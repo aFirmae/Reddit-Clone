@@ -1,0 +1,19 @@
+<div class="users-sidebar">
+    <h3>Current Users</h3>
+    <div class="users-section">
+        <h4>You</h4>
+        <div class="user-item current-user">
+            <img src="/images/default-avatar.png" alt="{{user.username}}" class="user-avatar">
+            <span class="username">u/{{user.username}}</span>
+        </div>
+    </div>
+    <div class="users-section">
+        <h4>Others</h4>
+        {{#each otherUsers}}
+        <div class="user-item">
+            <img src="/images/default-avatar.png" alt="{{this.username}}" class="user-avatar">
+            <span class="username">u/{{this.username}}</span>
+        </div>
+        {{/each}}
+    </div>
+</div> 

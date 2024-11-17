@@ -11,6 +11,7 @@ const register = require("./models/register");
 const Post = require("./models/post");
 const postRoutes = require("./routes/posts");
 const authRoutes = require("./routes/auth");
+const User = require("./models/register");
 
 const app = express();
 const port = process.env.PORT || 3200;
@@ -79,21 +80,25 @@ const upload = multer({ storage: storage });
 // Main page route
 app.get("/", auth, async (req, res) => {
     try {
-        // Redirect to login if no user is authenticated
         if (!req.user) {
             return res.redirect('/login');
         }
 
-        const posts = await Post.find()
-            .populate("author", "username")
-            .sort({ createdAt: -1 });
+        const [posts, otherUsers] = await Promise.all([
+            Post.find()
+                .populate("author", "username")
+                .sort({ createdAt: -1 }),
+            User.find({ _id: { $ne: req.user._id } })
+                .select('username _id')
+        ]);
             
         res.render("index", { 
             user: req.user,
-            posts: posts
+            posts: posts,
+            otherUsers: otherUsers
         });
     } catch (error) {
-        console.error("Error fetching posts:", error);
+        console.error("Error fetching data:", error);
         res.status(500).send(error);
     }
 });

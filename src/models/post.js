@@ -12,8 +12,7 @@ const Post = mongoose.models.Post || mongoose.model("Post", new mongoose.Schema(
         required: true
     },
     content: {
-        type: String,
-        required: true
+        type: String
     },
     imageUrl: {
         type: String

@@ -18,6 +18,10 @@ const upload = multer({ storage: storage });
 // Create new post
 router.post("/posts", auth, upload.single("image"), async (req, res) => {
     try {
+        if (!req.user) {
+            return res.render("create-post", { error: "User not authenticated" });
+        }
+
         const post = new Post({
             title: req.body.title,
             content: req.body.content,
@@ -28,7 +32,11 @@ router.post("/posts", auth, upload.single("image"), async (req, res) => {
         await post.save();
         res.redirect("/");
     } catch (error) {
-        res.render("create-post", { error: "Error creating post" });
+        console.error("Error creating post:", error);
+        res.render("create-post", { 
+            error: "Error creating post: " + error.message,
+            user: req.user 
+        });
     }
 });
 

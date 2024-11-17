@@ -1,0 +1,45 @@
+{{> header}}
+
+<div class="posts-container">
+    {{#if posts.length}}
+    {{#each posts}}
+    <div class="post-card" data-post-id="{{this._id}}">
+        <div class="post-header">
+            <span class="post-author">Posted by u/{{this.author.username}} • {{formatDate this.createdAt}}</span>
+            {{#if (isAuthor this)}}
+            <button class="delete-btn" onclick="deletePost('{{this._id}}')">
+                <i class="fas fa-trash"></i>
+            </button>
+            {{/if}}
+        </div>
+        <h2 class="post-title">{{this.title}}</h2>
+        <div class="post-content">
+            {{#if this.imageUrl}}
+            <img src="{{this.imageUrl}}" alt="Post image" class="post-image">
+            {{/if}}
+            <p>{{this.content}}</p>
+        </div>
+        <div class="vote-section">
+            <button class="vote-btn upvote {{#if (hasUpvoted this)}}active{{/if}}"
+                onclick="handleVote('{{this._id}}', 'up')">
+                <i class="fas fa-arrow-up"></i>
+                <span class="upvote-count">{{this.upvotes.length}}</span>
+            </button>
+            <button class="vote-btn downvote {{#if (hasDownvoted this)}}active{{/if}}"
+                onclick="handleVote('{{this._id}}', 'down')">
+                <i class="fas fa-arrow-down"></i>
+                <span class="downvote-count">{{this.downvotes.length}}</span>
+            </button>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="no-posts">
+        <h2>No posts yet!</h2>
+        <p>Be the first one to create a post.</p>
+        <a href="/create-post" class="btn">Create Post</a>
+    </div>
+    {{/if}}
+</div>
+
+{{> footer}}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Clone</title>
+    <link rel="stylesheet" href="/css/styles.css?v=1.0">
+    <!-- Font Awesome for vote icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/">Reddit Clone</a>
+        </div>
+        <div class="nav-links">
+            {{#if user}}
+                <span class="username">Welcome, {{user.username}}</span>
+                <a href="/create-post" class="create-post-btn">Create Post</a>
+                <a href="/logout">Logout</a>
+            {{else}}
+                <a href="/login">Login</a>
+                <a href="/signup">Sign Up</a>
+            {{/if}}
+        </div>
+    </nav>
+    <div class="container">
+        {{#if error}}
+            <div class="error-message">
+                {{error}}
+            </div>
+        {{/if}}

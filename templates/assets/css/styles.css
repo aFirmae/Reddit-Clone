@@ -63,6 +63,7 @@ body {
 
 .post-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
 }
@@ -93,18 +94,42 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+.vote-count {
+    min-width: 2rem;
+    text-align: center;
+    color: var(--text-color);
 }
 
 .vote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
     color: var(--secondary-text);
 }
 
-.vote-btn.active {
-    color: var(--primary-color);
+.vote-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.vote-btn.active.upvote {
+    color: #FF4500;
+}
+
+.vote-btn.active.downvote {
+    color: #7193FF;
+}
+
+.vote-btn i {
+    font-size: 1.2rem;
 }
 
 /* Form styles */
@@ -145,8 +170,12 @@ body {
 }
 
 .error-message {
-    color: red;
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 1rem;
+    border-radius: 4px;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .username {
@@ -163,57 +192,6 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-}
-
-.error-message {
-    background-color: #ffebee;
-    color: #c62828;
-    padding: 1rem;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.vote-section {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.vote-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
-
-.vote-btn:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.vote-btn.active.upvote {
-    color: #FF4500;
-}
-
-.vote-btn.active.downvote {
-    color: #7193FF;
-}
-
-.vote-btn i {
-    font-size: 1.2rem;
-}
-
-.post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
 }
 
 .delete-btn {

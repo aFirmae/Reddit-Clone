@@ -55,3 +55,6 @@ templates/assets/uploads/*
 # Package files
 package-lock.json
 package.json
+
+# Vercel
+.vercel

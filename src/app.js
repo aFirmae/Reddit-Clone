@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const hbs = require("hbs");
 const path = require("path");
@@ -123,3 +125,5 @@ app.get("/signup", auth, (req, res) => {
 app.get("/create-post", auth, (req, res) => {
     res.render("create-post", { user: req.user });
 });
+
+module.exports = app;

@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
-var mongoURI = 'mongodb+srv://Nilashis:7698@reddit-cluster.bdit5.mongodb.net/reddit-clone' || process.env.MONGODB_URI;
+var mongoURI = process.env.MONGODB_URI;
 
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,

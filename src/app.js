@@ -64,7 +64,7 @@ app.use(authRoutes);
 app.use(postRoutes);
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 });
 
 // Set up multer for image uploads
